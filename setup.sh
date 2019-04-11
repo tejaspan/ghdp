@@ -2,7 +2,7 @@
 
 
 #variables
-t_node=5
+t_node=2
 proj_name=api-project-18744604383
 
 #gcloud authentication 
@@ -16,5 +16,8 @@ proj_name=api-project-18744604383
 
 
 #creating instances
-bash deploy.sh $t_node $proj_name
+bash scripts/deploy.sh $t_node $proj_name
 
+
+#generating ssh-keygen and adding for password-less ssh
+#bash scripts/passwordless-ssh.sh
