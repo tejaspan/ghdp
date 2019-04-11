@@ -1,3 +1,4 @@
+#installing packages
 service iptables stop
 file=/etc/ssh/sshd_config
 cp -p $file $file.old && awk ' $1=="PermitRootLogin" {$2="yes"} $1=="PasswordAuthentication" {$2="yes"} $1=="#PubkeyAuthentication" {$1="PubkeyAuthentication"} {print} ' $file.old > $file

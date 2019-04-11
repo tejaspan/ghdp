@@ -2,7 +2,7 @@
 
 
 #variables
-t_node=2
+t_node=3
 proj_name=api-project-18744604383
 
 #gcloud authentication 
