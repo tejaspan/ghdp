@@ -20,4 +20,7 @@ bash scripts/deploy.sh $t_node $proj_name
 
 
 #generating ssh-keygen and adding for password-less ssh
+bash scripts/setup_instance_1.sh
+
+#bash scripts/passwordless-ssh.sh
 #bash scripts/passwordless-ssh.sh
