@@ -10,15 +10,13 @@ sleep 2m
 #yum-config-manager --add-repo http://public-repo-1.hortonworks.com/HDP/centos6/2.x/updates/2.6.3.0/hdp.repo
 #yum-config-manager --add-repo http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.6.0.0/ambari.repo
 
-gcloud compute ssh root@instance-1 -- "yum -y install ambari-server"
-gcloud compute ssh root@instance-1 -- "ambari-server setup -s"
 
 for ((i=1;i<=$1;i++))
 do
-	#installing java
-	gcloud compute ssh root@instance-$i -- "yum -y install java-1.8.0-openjdk"
+	#installing java & wget
+	gcloud compute ssh root@instance-$i -- "yum -y install java-1.8.0-openjdk wget"
 	#getting repository
-	gcloud compute ssh root@instance-$i -- "cd /etc/yum.repos.d/ && wget http://public-repo-1.hortonworks.com/ambari/centos6/2.x/updates/2.6.2.2/ambari.repo"
+	gcloud compute ssh root@instance-$i -- "cd /etc/yum.repos.d/ && wget http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.6.2.2/ambari.repo"
 	#installing ambari & ambari agent
 	gcloud compute ssh root@instance-$i -- "yum -y install ambari-agent"
 	#setting up ambari
@@ -27,5 +25,7 @@ do
 	gcloud compute ssh root@instance-$i -- "ambari-agent start"
 done
 
-#starting ambari server on instance-1
-gcloud compute ssh root@instance-1 -- "ambari-server start && ambari-agent start"
+#installing & starting ambari server on instance-1
+gcloud compute ssh root@instance-1 -- "yum -y install ambari-server"
+gcloud compute ssh root@instance-1 -- "ambari-server setup -s"
+gcloud compute ssh root@instance-1 -- "ambari-server start"
