@@ -4,4 +4,5 @@
 for ((i=1;i<=$1;i++))
 do
 	gcloud compute ssh root@instance-1 -- "sshpass -p 'root' ssh-copy-id -i .ssh/id_rsa.pub root@instance-$i"
+#	INFO "Password-less ssh created for instance-$i"
 done

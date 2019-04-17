@@ -1,7 +1,9 @@
 #!/bin/bash
 
-
 #variables
+
+#log function
+#source scripts/write_log.sh
 
 #taking user input
 echo "--------------------------------------------------"
@@ -10,12 +12,14 @@ echo -e "--------------------------------------------------\n"
 read -p "Total number of node:" t_node
 read -p "Project Name: " proj_name
 
+
 #getting confirmation
 echo -e "\nPlease verify..."
 echo -e "Number of node: $t_node"
 echo -e "Project Name: $proj_name"
 read -r -p "do you want to continue? [y/N] " response
 
+#INFO "No of node: $t_node, Project Name: $proj_name, response: $response"
 #initializing functions
 
 #checking user input
@@ -39,12 +43,14 @@ then
 	then
 
 		#generating ssh-keygen and adding for password-less ssh
+#		INFO "setup_instance_1 initiated."
 		bash scripts/setup_instance_1.sh
-
 		#setting passworless-ssh
+#		INFO "passwordless-ssh.sh initiated."
 		bash scripts/passwordless-ssh.sh $t_node
 
 		#installing ambari and ambari agent
+#		INFO "ambari.sh initiated."
 #		bash scripts/ambari.sh $t_node
 	fi
 fi
